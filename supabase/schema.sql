@@ -23,6 +23,7 @@ create table if not exists public.orders (
   payment_status text not null default 'pending' check (payment_status in ('pending', 'approved', 'rejected')),
   status text not null default 'pending' check (status in ('pending', 'confirmed', 'shipped', 'completed', 'cancelled')),
   total_clp integer not null check (total_clp >= 0),
+  stock_reserved boolean not null default false,
   created_at timestamptz not null default now()
 );
 
@@ -73,6 +74,51 @@ create policy "Customers can create order items" on public.order_items
   for insert with check (true);
 create policy "Owners can read order items" on public.order_items
   for select to authenticated using (public.is_admin());
+
+create or replace function public.reserve_order_stock(p_items jsonb)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  item jsonb;
+  current_stock integer;
+  requested_quantity integer;
+begin
+  for item in select value from jsonb_array_elements(p_items)
+  loop
+    requested_quantity := (item->>'quantity')::integer;
+    select stock into current_stock from public.products
+      where id = (item->>'product_id')::uuid and active = true
+      for update;
+    if current_stock is null or requested_quantity < 1 or current_stock < requested_quantity then
+      raise exception 'INSUFFICIENT_STOCK';
+    end if;
+    update public.products
+      set stock = stock - requested_quantity
+      where id = (item->>'product_id')::uuid;
+  end loop;
+end;
+$$;
+
+create or replace function public.release_order_stock(p_items jsonb)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  item jsonb;
+begin
+  for item in select value from jsonb_array_elements(p_items)
+  loop
+    update public.products
+      set stock = stock + (item->>'quantity')::integer
+      where id = (item->>'product_id')::uuid;
+  end loop;
+end;
+$$;
 
 insert into public.products (name, category, description, price_clp, stock, color, tag)
 select * from (values
