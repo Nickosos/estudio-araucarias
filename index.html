@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Insumos profesionales para reparación y pintura automotriz.">
+  <title>Estudio Araucarias | Insumos automotrices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
+</head>
+<body>
+<header class="site-header"><div class="container nav"><a class="brand" href="#inicio"><b>EA</b><span><strong>Estudio</strong><small>Araucarias</small></span></a><nav><a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav><button id="open-cart" class="cart-button">Mi pedido <i id="cart-count">0</i></button></div></header>
+<main>
+<section class="hero" id="inicio"><div class="container hero-grid"><div><p class="eyebrow">Insumos para profesionales</p><h1>Todo listo para que tu próximo trabajo <em>brille.</em></h1><p class="hero-text">Productos confiables para reparación, preparación y pintura automotriz. Asesoría cercana y despacho a todo Chile.</p><a class="button dark" href="#catalogo">Ver catálogo ↗</a></div><div class="hero-art"><span class="art-title">MATERIALES<br><b>QUE RINDEN</b></span><div class="can can-back">2K</div><div class="can can-front">PRIMER<br><b>PRO</b></div><span class="spark">✦</span></div></div></section>
+<section class="benefits"><div class="container benefits-grid"><div>✦ <span><b>Calidad profesional</b><small>Marcas que recomendamos</small></span></div><div>⌁ <span><b>Envíos a todo Chile</b><small>Despacho coordinado</small></span></div><div>◌ <span><b>Te asesoramos</b><small>Resolvemos tus dudas</small></span></div></div></section>
+<section class="container catalog" id="catalogo"><div class="section-head"><div><p class="eyebrow">Nuestro catálogo</p><h2>Encuentra lo que necesitas.</h2></div><p>Preparación, color y terminación para resultados que hablan por sí solos.</p></div><div class="toolbar"><div class="categories"><button class="category active" data-category="Todos">Todos</button><button class="category" data-category="Preparación">Preparación</button><button class="category" data-category="Pintura">Pintura</button><button class="category" data-category="Terminación">Terminación</button><button class="category" data-category="Herramientas">Herramientas</button></div><input id="search" type="search" placeholder="Buscar producto..."></div><div id="product-grid" class="product-grid"></div><p id="empty-state" class="empty" hidden>No encontramos productos.</p></section>
+<section class="about" id="nosotros"><div class="container about-grid"><div class="about-art">ESTUDIO<br><b>ARAUCARIAS</b></div><div><p class="eyebrow">Más que una tienda</p><h2>El material correcto cambia el resultado.</h2><p>Seleccionamos insumos que conocemos para ayudarte a trabajar mejor, cuidar tus tiempos y lograr un acabado profesional.</p></div></div></section>
+<section class="container contact" id="contacto"><div><p class="eyebrow">¿Tienes un proyecto?</p><h2>Hablemos de lo que necesitas.</h2></div><a class="button dark" href="https://wa.me/56956327219" target="_blank" rel="noreferrer">Escribir por WhatsApp ↗</a></section>
+</main>
+<footer><div class="container"><span>Estudio Araucarias</span><small>Insumos para reparación automotriz · © 2026</small></div></footer>
+<button id="floating-cart" class="floating-cart" aria-label="Ver pedido">Pedido <i id="floating-cart-count">0</i><span id="floating-cart-total">$0</span></button>
+<div id="cart-overlay" class="overlay" hidden></div><aside id="cart-drawer" class="drawer" aria-hidden="true"><div class="drawer-head"><div><p class="eyebrow">Tu selección</p><h2>Mi pedido</h2></div><button id="close-cart" class="close">×</button></div><div id="cart-items"></div><div id="cart-empty" class="cart-empty">✦<b>Tu pedido está vacío</b><small>Agrega productos del catálogo.</small></div><div id="drawer-footer" hidden><div class="total"><span>Total estimado</span><b id="cart-total">$0</b></div><p class="note">Elige cómo quieres pagar.</p><label><input type="radio" name="payment" value="transfer" checked> Transferencia bancaria</label><label><input type="radio" name="payment" value="mercadopago"> Mercado Pago</label><button id="checkout" class="button dark full">Continuar pedido ↗</button></div></aside>
+<script src="app.js"></script>
+</body></html>

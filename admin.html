@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin | Estudio Araucarias</title>
+  <link rel="stylesheet" href="styles.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
+</head>
+<body><main class="admin-shell">
+<section id="login" class="admin-card"><p class="eyebrow">Estudio Araucarias</p><h1>Panel de administración</h1><form id="login-form"><input id="email" type="email" placeholder="Correo" required><input id="password" type="password" placeholder="Contraseña" required><button class="button dark full">Ingresar</button></form><p id="login-error"></p></section>
+<section id="dashboard" hidden><div class="admin-top"><div><p class="eyebrow">Administración</p><h1>Productos y pedidos</h1></div><button id="logout" class="button">Cerrar sesión</button></div><div id="admin-content"></div></section>
+</main><script src="admin.js"></script></body></html>
